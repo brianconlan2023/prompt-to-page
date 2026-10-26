@@ -1,20 +1,27 @@
+<div align="center">
+
+<img src="og-card.png" alt="prompt-to-page: type a prompt, get a page" width="720">
+
 # prompt-to-page
 
-A local-first prompt-to-page tool. Type a prompt, get one `index.html` with inline CSS, opened in your browser.
+[![license](https://img.shields.io/badge/license-MIT-D4AF37?style=flat-square)](LICENSE)
+[![local-first](https://img.shields.io/badge/local--first-yes-0B1020?style=flat-square)](#philosophy)
+[![no cloud](https://img.shields.io/badge/cloud-none-0B1020?style=flat-square)](#philosophy)
+[![stars](https://img.shields.io/github/stars/brianconlan2023/prompt-to-page?style=flat-square&color=D4AF37)](https://github.com/brianconlan2023/prompt-to-page/stargazers)
 
-Built on [OpenDesign](https://github.com/nexu-io/open-design) (Apache-2.0), with Xiaomi MiMo (`mimo-v2.6-pro`) or local OpenCode models.
+A small, local-first alternative to heavyweight design tools. Type a prompt and get one HTML page. No cloud, no accounts.
 
-It is deliberately smaller than heavyweight SaaS design tools: no cloud, no accounts, no design system to adopt, no collaboration.
+[Website](https://github.com/brianconlan2023/prompt-to-page) · [Docs](#quick-start) · [Download](https://github.com/brianconlan2023/prompt-to-page/releases) · API (coming soon) · [Changelog](https://github.com/brianconlan2023/prompt-to-page/commits/main)
 
-**Extras**
-- **Design-token extraction:** URL → screenshot → colour, type, spacing and motion tokens.
-- **Motion export:** hand the page to HyperFrames and render it to MP4 locally, no GPU needed.
+</div>
 
-> **Status:** today this runs through OpenDesign plus the bundled `skills/hyperframes-handoff` skill and the `design-systems/manifest-motion` package. The standalone `src/`, `tokens/` and `motion/` modules are on the roadmap.
+---
+
+prompt-to-page turns a text prompt into a single `index.html` with inline CSS, which you open straight in your browser. It runs on [OpenDesign](https://github.com/nexu-io/open-design) and uses Xiaomi MiMo (`mimo-v2.6-pro`) or free local models through [OpenCode](https://opencode.ai). Everything stays on your machine except the calls to the model you choose. A bundled design system keeps pages on-brand, and a [HyperFrames](https://github.com/heygen-com/hyperframes) handoff skill lets you render a page's motion to MP4 locally, with no GPU needed.
 
 ## Quick start
 
-Requires Node 24.
+Requirements: Node.js 24, and either a MiMo Token Plan key or OpenCode installed.
 
 ```bash
 git clone https://github.com/nexu-io/open-design.git
@@ -24,9 +31,9 @@ pnpm install
 pnpm tools-dev run web
 ```
 
-### Model: MiMo
+Then copy this repo's `skills/hyperframes-handoff` and `design-systems/manifest-motion` folders into OpenDesign's `skills/` and `design-systems/` folders.
 
-Add MiMo as a **custom OpenAI-compatible provider**. Don't use the built-in MiMo preset, because it points to the China endpoint.
+**MiMo:** add it as a custom OpenAI-compatible provider in OpenDesign Settings. Don't use the built-in MiMo preset, because it points to the China endpoint.
 
 ```text
 Base URL: https://token-plan-sgp.xiaomimimo.com/v1
@@ -34,38 +41,35 @@ Model:    mimo-v2.6-pro
 API key:  your tp- Token Plan key (never commit it)
 ```
 
-### Model: OpenCode
+**OpenCode:** pick OpenCode as the agent and choose a model. Small free models may not write files reliably.
 
-Install the `opencode` CLI and choose OpenCode as the agent in OpenDesign's settings. Note: small free models may answer without writing any files.
+Try the prompt in [`example-prompt.txt`](example-prompt.txt).
 
-## Example
+## Features
 
-Prompt ([`examples/example-prompt.txt`](examples/example-prompt.txt)):
+| Feature | Status |
+| --- | --- |
+| Prompt to a single `index.html` with inline CSS | Works today, through OpenDesign |
+| Manifest Motion design system (tokens, type, motion presets) | Works today |
+| HyperFrames motion export to MP4, rendered locally | Works today, through the handoff skill |
+| URL to design-token extraction | Planned standalone module |
+| Automatic model failover | Planned |
 
-```text
-Build a single HTML file named index.html for a landing page called Manifest Motion. Dark midnight background, gold headline Design that moves, one sentence of subtext, one Get started button. Inline CSS only, no external files, no JavaScript. Do not write any markdown, readme, or explanation — the only file you create is index.html.
-```
+## Philosophy
 
-Output: a single `index.html` with a dark midnight page, the gold headline "Design that moves", a line of subtext and a "Get started" button.
-
-## Design philosophy
-
-- **One file out.** Every result is a single portable HTML file.
-- **Local first.** Your prompts, keys and pages stay on your machine.
-- **Fewer features.** Do one job well instead of rebuilding a design suite.
-- **Bring your own model.** A hosted API or a local agent, your choice.
-
-## Roadmap
-
-- [ ] `tokens/` module: standalone URL-to-tokens extraction
-- [ ] `motion/` bridge: standalone HyperFrames MP4 export
-- [ ] Provider failover: MiMo → Grok → Gemini → Claude → OpenAI
-- [ ] Local ComfyUI hook for generated images and video
+- **One prompt, one file.** You get output you can read, open and host anywhere.
+- **Local first.** No cloud backend, no accounts and no telemetry from this project.
+- **Strict prompts.** Tell the model exactly which file to write and nothing else.
+- **Do less, but finish it.**
 
 ## Contributing
 
-Issues and pull requests are welcome. Keep changes small, local-first and free of new cloud dependencies. Never commit API keys.
+Small, focused pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md), and report security issues as described in [SECURITY.md](SECURITY.md).
 
-## License
+---
 
-Apache-2.0. OpenDesign is also Apache-2.0; see its repository for its own notices.
+<div align="center">
+
+MIT © Manifestation16 · Built on OpenDesign (Apache-2.0)
+
+</div>
