@@ -1,0 +1,60 @@
+/* design-systems/manifest-motion/tokens.css
+ * Manifest Motion (M-LIB). Palette P1 "Midnight Gold" from spec.md section 4.
+ * Motion values marked PROPOSED are not in the spec; confirm before relying on them.
+ */
+:root {
+  --bg: #0B0B10;
+  --surface: #15151D;
+  --surface-warm: #1F1F2A;
+  --fg: #F4F1EA;
+  --fg-2: #F4F1EA;
+  --muted: #A8A3B3;
+  --meta: #6E56CF;
+  --border: #2C2C3A;
+  --border-soft: #1F1F2A;
+  --accent: #C9A84C;
+  --accent-on: #0B0B10;
+  --accent-hover: #E0C26A;
+  --accent-active: color-mix(in oklab, var(--accent), black 14%);
+  --success: #3FB68B;
+  --warn: #E0C26A;
+  --danger: #E5484D;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: clamp(16px, 1.2vw, 18px);
+  --text-lg: 20px;
+  --text-xl: clamp(22px, 2.2vw, 30px);
+  --text-2xl: clamp(30px, 3.6vw, 52px);
+  --text-3xl: clamp(40px, 5vw, 72px);
+  --text-4xl: 72px;
+  --leading-body: 1.6;
+  --leading-tight: 1.08;
+  --tracking-display: -0.01em;
+  --tracking-eyebrow: 0.2em;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+  --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-12: 48px;
+  --section-y-desktop: 160px; --section-y-tablet: 120px; --section-y-phone: 80px;
+  --radius-sm: 6px; --radius-md: 10px; --radius-lg: 16px; --radius-pill: 999px;
+  --elev-flat: none;
+  --elev-ring: 0 0 0 1px var(--border);
+  --elev-raised: 0 12px 40px rgba(0,0,0,.45), 0 0 0 1px var(--border);
+  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
+  /* Motion (PROPOSED values) */
+  --motion-fast: 180ms;
+  --motion-base: 320ms;
+  --motion-slow: 600ms;
+  --motion-scene: 1200ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+  --stagger-word: 60ms;
+  --stagger-char: 25ms;
+  --container-max: 1280px;
+  --container-gutter-desktop: 48px; --container-gutter-tablet: 32px; --container-gutter-phone: 20px;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-fast: 0ms; --motion-base: 0ms; --motion-slow: 0ms; --motion-scene: 0ms; --stagger-word: 0ms; --stagger-char: 0ms; }
+}

@@ -1,0 +1,1 @@
+Build a single HTML file named index.html for a landing page called Manifest Motion. Dark midnight background, gold headline Design that moves, one sentence of subtext, one Get started button. Inline CSS only, no external files, no JavaScript. Do not write any markdown, readme, or explanation — the only file you create is index.html.
